@@ -1,0 +1,41 @@
+$layout-width-inner: 1200px;
+// ブレークポイント
+$breakpoints: (
+  "sp": "screen and (max-width: 767px)",
+  "tab": "screen and (max-width: #{$layout-width-inner - 1px})",
+  "pc": "screen and (min-width: #{$layout-width-inner})",
+);
+// メディアクエリー
+@mixin mq($breakpoint: sp) {
+
+  @media #{map-get($breakpoints, $breakpoint)} {
+
+    @content;
+  }
+}
+
+.header {
+  background: #1B1310;
+  border-bottom: 1px solid #FFF;
+  position: relative;
+  &-wrapper {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 0 30px;
+  }
+  &-logo {
+    font-size: 26px;
+    margin: 24px 0;
+    & a {
+      color: #fff;
+    }
+  }
+  @include mq('sp') {
+    &-wrapper {
+      padding: 0 15px;
+    }
+  }
+}

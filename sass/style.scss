@@ -1,0 +1,51 @@
+@import "base/base";
+@import "components/header";
+@import "components/main";
+@import "components/footer";
+@import "base/burger";
+@import "base/nav";
+
+// レイアウト幅
+$layout-width-inner: 1030px;
+
+// ブレークポイント
+$breakpoints: (
+  "sp": "screen and (max-width: 767px)",
+  "tab": "screen and (max-width: #{$layout-width-inner - 1px})",
+  "pc": "screen and (min-width: #{$layout-width-inner})",
+);
+@mixin mq($breakpoint: sp) {
+
+  @media #{map-get($breakpoints, $breakpoint)} {
+
+    @content;
+  }
+}
+
+// fv
+.fv {
+  align-items: center;
+  background-image: url(../image/fv-bgi@2x.jpg);
+  background-position: bottom;
+  background-size: cover;
+  display: flex;
+  height: 92vh;
+  justify-content: center;
+  &-title {
+    border: 2px solid #FFF;
+    color: #FFF;
+    font-size: 50px;
+    letter-spacing: 2.5px;
+    line-height: 67px;
+    padding: 35px 42px;
+  }
+  @include mq('sp') {
+    background-image: url(../image/fv-bgi_sp@2x.jpg);
+    &-title {
+      font-size: 30px;
+      letter-spacing: 1.5px;
+      line-height: 41px;
+      padding: 30px 41px;
+    }
+  }
+}

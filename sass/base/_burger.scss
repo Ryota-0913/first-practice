@@ -1,0 +1,56 @@
+$layout-width-inner: 1200px;
+// ブレークポイント
+$breakpoints: (
+  "sp": "screen and (max-width: 767px)",
+  "tab": "screen and (max-width: #{$layout-width-inner - 1px})",
+  "pc": "screen and (min-width: #{$layout-width-inner})",
+);
+// メディアクエリー
+@mixin mq($breakpoint: sp) {
+
+  @media #{map-get($breakpoints, $breakpoint)} {
+
+    @content;
+  }
+}
+
+
+.openbtn {
+  display: none;
+  z-index: 3;
+  @include mq('sp') {
+    cursor: pointer;
+    display: block;
+    height: 35px;
+    position: relative;
+    width: 35px;
+    z-index: 3;
+    & span {
+      background: #fff;
+      display: inline-block;
+      height: 2px;
+      left: 5px;
+      position: absolute;
+      transition: all .4s;
+      width: 25px;
+      &:nth-of-type(1) {
+        top: 7.5px;
+      }
+      &:nth-of-type(2) {
+        top: 16.5px;
+      }
+      &:nth-of-type(3) {
+        top: 25.5px;
+      }
+    }
+    &.close span:nth-of-type(1) {
+      transform: translateY(9px) rotate(-40deg);
+    }
+    &.close span:nth-of-type(2) {
+      opacity: 0;/*真ん中の線は透過*/
+    }
+    &.close span:nth-of-type(3){
+      transform: translateY(-9px) rotate(40deg);
+    }
+  }
+}
